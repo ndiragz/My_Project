@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_blue">#0F52BA</color>
+    <color name="primary_dark_blue">#083D8B</color>
+    <color name="accent_orange">#FF9800</color>
+    <color name="background_light">#F5F7FA</color>
+    <color name="splash_bg">#0F52BA</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+
+    <!-- Modern Palette -->
+    <color name="md_theme_primary">#0F52BA</color>
+    <color name="md_theme_onPrimary">#FFFFFF</color>
+    <color name="md_theme_secondary">#FF9800</color>
+</resources>
