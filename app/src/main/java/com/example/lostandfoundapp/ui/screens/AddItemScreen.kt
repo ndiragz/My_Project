@@ -68,6 +68,13 @@ fun AddItemScreen(
     LaunchedEffect(itemId) {
         itemId?.let { id ->
             viewModel.getItem(id).firstOrNull()?.let { item ->
+                // SECURITY CHECK: Only allow the original reporter to update
+                if (item.reporterEmail != userEmail) {
+                    Toast.makeText(context, "You are not authorized to edit this report", Toast.LENGTH_SHORT).show()
+                    onBackClick()
+                    return@let
+                }
+                
                 title = item.title
                 description = item.description
                 location = item.location

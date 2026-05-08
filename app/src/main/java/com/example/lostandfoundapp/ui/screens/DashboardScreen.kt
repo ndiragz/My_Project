@@ -366,6 +366,7 @@ fun DashboardScreen(
                     items(pendingMyReports) { item ->
                         ItemCard(
                             item = item,
+                            isOwner = true,
                             onDeleteClick = { 
                                 itemToDelete = item
                                 showDeleteDialog = true
@@ -385,6 +386,7 @@ fun DashboardScreen(
                     items(rejectedMyReports) { item ->
                         ItemCard(
                             item = item,
+                            isOwner = true,
                             onDeleteClick = { 
                                 itemToDelete = item
                                 showDeleteDialog = true
@@ -433,6 +435,7 @@ fun DashboardScreen(
                     items(items) { item ->
                         ItemCard(
                             item = item,
+                            isOwner = item.reporterEmail == userEmail,
                             onDeleteClick = { 
                                 itemToDelete = item
                                 showDeleteDialog = true
@@ -481,6 +484,7 @@ fun SectionHeader(title: String, icon: ImageVector, color: Color) {
 @Composable
 fun ItemCard(
     item: LostItem,
+    isOwner: Boolean,
     onDeleteClick: () -> Unit,
     onUpdateClick: () -> Unit,
     onClick: () -> Unit
@@ -597,13 +601,15 @@ fun ItemCard(
                         )
                     }
                     
-                    Row {
-                        IconButton(onClick = onUpdateClick, modifier = Modifier.size(24.dp)) {
-                            Icon(Icons.Default.Edit, contentDescription = "Edit", size = 16.dp, tint = MaterialTheme.colorScheme.primary)
-                        }
-                        Spacer(modifier = Modifier.width(8.dp))
-                        IconButton(onClick = onDeleteClick, modifier = Modifier.size(24.dp)) {
-                            Icon(Icons.Default.Delete, contentDescription = "Delete", size = 16.dp, tint = MaterialTheme.colorScheme.error)
+                    if (isOwner) {
+                        Row {
+                            IconButton(onClick = onUpdateClick, modifier = Modifier.size(24.dp)) {
+                                Icon(Icons.Default.Edit, contentDescription = "Edit", size = 16.dp, tint = MaterialTheme.colorScheme.primary)
+                            }
+                            Spacer(modifier = Modifier.width(8.dp))
+                            IconButton(onClick = onDeleteClick, modifier = Modifier.size(24.dp)) {
+                                Icon(Icons.Default.Delete, contentDescription = "Delete", size = 16.dp, tint = MaterialTheme.colorScheme.error)
+                            }
                         }
                     }
                 }

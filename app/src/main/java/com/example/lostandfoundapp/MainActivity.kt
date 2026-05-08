@@ -165,6 +165,9 @@ fun LostAndFoundApp(authViewModel: AuthViewModel) {
                     item?.let { lostItem ->
                         ItemDetailScreen(
                             item = lostItem,
+                                           currentUserEmail = currentUser?.email,
+                            onUpdateClick = { navController.navigate("update_item/${it.id}") },
+                            onDeleteClick = { viewModel.deleteItem(it) },
                             onBackClick = { navController.popBackStack() }
                         )
                     }
